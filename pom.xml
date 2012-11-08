@@ -5,7 +5,7 @@
 	<groupId>org.scala-lang</groupId>
 	<artifactId>scala-library-all</artifactId>
 	<packaging>pom</packaging>
-	<version>2.10.0-RC1</version>
+	<version>2.10.0-RC2</version>
   <name>The Complete Scala Library</name>
   <description>The *complete* standard library for the Scala Programming Language</description>
 	<url>http://www.scala-lang.org/</url>
@@ -54,20 +54,43 @@
      <dependency>
          <groupId>com.typesafe.akka</groupId>
          <artifactId>akka-actor_${project.version}</artifactId>
-         <version>2.1.0-RC1</version>
+         <version>2.1.0-RC2</version>
+     </dependency>
+     <dependency>
+         <groupId>org.scala-lang</groupId>
+         <artifactId>scala-actors-migration_${project.version}</artifactId>
+         <version>1.0.0-RC2</version>
      </dependency>
    </dependencies>
    <distributionManagement>
       <repository>
-         <id>scala-tools.org</id>
+         <id>sonatype-nexus</id>
          <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
       </repository>
       <snapshotRepository>
-         <id>scala-tools.org</id>
+         <id>sonatype-nexus-snapshots</id>
          <url>https://oss.sonatype.org/content/repositories/snapshots</url>
          <uniqueVersion>false</uniqueVersion>
       </snapshotRepository>
   </distributionManagement>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+        <version>1.4</version>
+        <executions>
+          <execution>
+            <id>sign-artifacts</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>sign</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
   <developers>
     <developer>
       <id>lamp</id>
